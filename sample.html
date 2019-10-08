@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Hello Vue Router</title>
+    </head>
+    <body>
+
+        <div id="app">
+            <p>
+              {{ message}}
+            </p>
+            <hr>
+            <input type="text" v-bind:value="message"/>
+            <input type="text" v-model:value="message"/>
+            <hr>
+            <p v-if="iToggle">
+              if
+            </p>
+            <hr>
+            <p v-show="sToggle">
+              show
+            </p>
+            <hr>
+            <ol>
+              <li v-for="color in colors">{{color}}</li>
+            </ol>
+            <hr>
+            <ul>
+              <li v-for="value in user">{{ value }}</li>
+            </ul>
+            <hr>
+            <ul>
+              <li v-for="(value, key) in user">
+              {{ key }} : {{ value }}</li>
+            </ul>
+            <hr>
+            <button v-on:click="onclick">
+              Click
+            </button>
+            <p>
+              {{now}}
+            </p>
+            <hr>
+          </div>
+          
+          <div id="comp">
+            <hello-component></hello-component>
+            <hello-component></hello-component>
+          </div>
+          
+        <script src="https://unpkg.com/vue@2.6.10"></script>
+
+        <script>
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    message: 'Hello',
+                    iToggle: false,
+                    sToggle: true,
+                    colors:['Red', 'Green', 'Blue'],
+                    user:{
+                        firstName: 'Taro',
+                    lastName: 'Yamada',
+                    age: 28
+                    },
+                    now: ''
+                },
+                methods: {
+                    onclick: function(){
+                        //alert('onclick');
+                    this.now = new Date().toLocaleString();
+                    }
+                }
+            })
+
+            Vue.component('hello-component', {
+                template: '<p>Hello</p>'
+            })
+            var comp = new Vue({
+	            el: '#comp'
+            })
+        </script>
+    </body>
+
+</html>
+
